@@ -42,6 +42,11 @@ var CounterManager = React.createClass({
         aNumber += this.state.newNumber;
         this.setState({newNumber: aNumber, item: currentItems});
     },
+    resetButton: function(e){
+        e.preventDefault();
+        var clearedItems = []
+        this.setState({newNumber: 0, items: clearedItems})
+    },
     render: function(){
 
         var divStyle = {
@@ -50,17 +55,20 @@ var CounterManager = React.createClass({
             color: 'sienna'
 
         };
+
         var btnStyle = {
             marginTop: 10,
+            marginBottom: 10,
             minWidth: 80
         };
+
         var bodyStyle = {
 
         };
         var panelStuff = {
             minHeight: 50,
-            maxHeight: 150,
-            minHeight: 150,
+            maxHeight: 160,
+            minHeight: 160,
             overflowY: 'scroll',
             color: 'sienna'
 
@@ -73,7 +81,7 @@ var CounterManager = React.createClass({
             <div style={divStyle} className="col-xs-5 col-sm-5 col-md-5 col-lg-5" >
                 <div style={divStyle} className="panel panel-default">
                     <div style={bodyStyle} className="panel-body">
-                        <h3>{this.props.title}</h3>
+                        <h2>{this.props.title}</h2>
                         <form onSubmit={this.casinoSubmit}>
                             <button style={btnStyle} className="btn btn-warning btn-lg btn-block">Casino</button>
                         </form>
@@ -92,6 +100,9 @@ var CounterManager = React.createClass({
                             <div style={panelStuff} className="panel panel-default">
                                 <List items={this.state.items} />
                             </div>
+                            <form onSubmit={this.resetButton}>
+                                <button style={btnStyle} className="btn btn-warning btn-lg">Reset</button>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -19094,6 +19094,11 @@ var CounterManager = React.createClass({
         aNumber += this.state.newNumber;
         this.setState({ newNumber: aNumber, item: currentItems });
     },
+    resetButton: function (e) {
+        e.preventDefault();
+        var clearedItems = [];
+        this.setState({ newNumber: 0, items: clearedItems });
+    },
     render: function () {
 
         var divStyle = {
@@ -19102,15 +19107,18 @@ var CounterManager = React.createClass({
             color: 'sienna'
 
         };
+
         var btnStyle = {
             marginTop: 10,
+            marginBottom: 10,
             minWidth: 80
         };
+
         var bodyStyle = {};
         var panelStuff = {
             minHeight: 50,
-            maxHeight: 150,
-            minHeight: 150,
+            maxHeight: 160,
+            minHeight: 160,
             overflowY: 'scroll',
             color: 'sienna'
 
@@ -19129,7 +19137,7 @@ var CounterManager = React.createClass({
                     'div',
                     { style: bodyStyle, className: 'panel-body' },
                     React.createElement(
-                        'h3',
+                        'h2',
                         null,
                         this.props.title
                     ),
@@ -19182,6 +19190,15 @@ var CounterManager = React.createClass({
                             'div',
                             { style: panelStuff, className: 'panel panel-default' },
                             React.createElement(List, { items: this.state.items })
+                        ),
+                        React.createElement(
+                            'form',
+                            { onSubmit: this.resetButton },
+                            React.createElement(
+                                'button',
+                                { style: btnStyle, className: 'btn btn-warning btn-lg' },
+                                'Reset'
+                            )
                         )
                     )
                 )
