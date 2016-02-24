@@ -19099,6 +19099,12 @@ var CounterManager = React.createClass({
         var clearedItems = [];
         this.setState({ newNumber: 0, items: clearedItems });
     },
+    componentDidUpdate: function () {
+        var node = this.refs.panelStuff;
+        if (node) {
+            node.scrollTop = node.scrollHeight;
+        }
+    },
     render: function () {
 
         var divStyle = {
@@ -19188,7 +19194,7 @@ var CounterManager = React.createClass({
                         React.createElement(Counter, { newNumber: this.state.newNumber }),
                         React.createElement(
                             'div',
-                            { style: panelStuff, className: 'panel panel-default' },
+                            { style: panelStuff, ref: 'panelStuff', className: 'panel panel-default' },
                             React.createElement(List, { items: this.state.items })
                         ),
                         React.createElement(

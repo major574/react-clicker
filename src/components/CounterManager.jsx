@@ -47,6 +47,12 @@ var CounterManager = React.createClass({
         var clearedItems = []
         this.setState({newNumber: 0, items: clearedItems})
     },
+    componentDidUpdate: function(){
+        var node = this.refs.panelStuff;
+        if(node){
+            node.scrollTop = node.scrollHeight;
+        }
+    },
     render: function(){
 
         var divStyle = {
@@ -97,7 +103,7 @@ var CounterManager = React.createClass({
                         <div>
                             <h4>Gold</h4>
                             <Counter newNumber={this.state.newNumber} />
-                            <div style={panelStuff} className="panel panel-default">
+                            <div style={panelStuff} ref="panelStuff" className="panel panel-default">
                                 <List items={this.state.items} />
                             </div>
                             <form onSubmit={this.resetButton}>
